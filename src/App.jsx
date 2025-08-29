@@ -23,9 +23,6 @@ function App() {
 
   function handlegpt (){
     setchatgpt(!chatgpt)
-    // setSnakegame(false)
-    // setGame2(false)
-    // setGame(false)
   }
 
   function handlereload(){
