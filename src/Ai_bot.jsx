@@ -56,18 +56,17 @@ const Ai_bot = () => {
         const saveddata = localStorage.getItem("task");
             setMessages(JSON.parse(saveddata))
     },[])
-    // useEffect(() => {
-    //     localStorage.setItem("task",JSON.stringify(messages))
-    // },[handleSend])
+    useEffect(() => {
+        localStorage.setItem("task",JSON.stringify(messages))
+    },[handleSend])
 
-console.log(messages)
 return (
     <div className="chat-container">
         <div className="chat-box">
              <h1 className="chat-header" >🤖 Gokul AI-Copilot</h1>
              <div className="messages">
                 {messages<1 && <h2 className="first"> !!! Feel !!! Fee to Share your Prompt.....</h2>}
-            {messages.map((item,index) => (
+            { messages.map((item,index) => (
               <div key={index} className={`message ${item.sender === "user" ? "user" : "bot"}`} >{item.text}</div>
             ))}
             </div>

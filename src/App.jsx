@@ -17,7 +17,7 @@ function App() {
   const [game2, setGame2] = useState(false)
   const [co_pilot, setco_pilot] = useState(false)
   const [ai, setai] = useState(false)
-  const [home, sethome] = useState(true)
+  const [home, sethome] = useState(false)
   const [weather, setweather] = useState(false)
 
 
@@ -86,9 +86,7 @@ function App() {
     setGame2(false)
   }
 
-  useEffect(() => {
-    window.confirm("THIS SITE WORKS EFFICIENTLY ONLY FOR PC")
-  },[])
+
 
 
 return (
@@ -115,7 +113,8 @@ return (
       <main>
           {snakegame && <Flappy_Game />}
           {game2 && <Snake_Game />}
-          {ai && <Ai_bot />}
+          {/* ai */}
+          {true && <Ai_bot />}
           {co_pilot &&<Copilot />}
           {weather && <Weather />}
       </main>
