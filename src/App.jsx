@@ -17,7 +17,7 @@ function App() {
   const [game2, setGame2] = useState(false)
   const [co_pilot, setco_pilot] = useState(false)
   const [ai, setai] = useState(false)
-  const [home, sethome] = useState(false)
+  const [home, sethome] = useState(true)
   const [weather, setweather] = useState(false)
 
 
@@ -113,8 +113,7 @@ return (
       <main>
           {snakegame && <Flappy_Game />}
           {game2 && <Snake_Game />}
-          {/* ai */}
-          {true && <Ai_bot />}
+          {ai  && <Ai_bot />}
           {co_pilot &&<Copilot />}
           {weather && <Weather />}
       </main>
