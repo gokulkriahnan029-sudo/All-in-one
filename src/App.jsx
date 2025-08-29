@@ -1,91 +1,127 @@
 
 import './App.css'
 import { useEffect, useState } from 'react'
-
+import Flappy_Game from './Flappy_Game'
+import Snake_Game from './Snake_Game'
+import Ai_bot from './Ai_bot'
+import Copilot from './Copilot'
+import Home from './Home'
+import Weather from './Weather'
 
 
 function App() { 
 
+  const [chatgpt, setchatgpt] = useState(false)
+  const [snakegame, setSnakegame] = useState(false)
+  const [game, setGame] = useState(false)
+  const [game2, setGame2] = useState(false)
+  const [co_pilot, setco_pilot] = useState(false)
+  const [ai, setai] = useState(false)
+  const [home, sethome] = useState(true)
+  const [weather, setweather] = useState(false)
 
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
 
-  const systemPrompt = {
-        role: "user",
-        parts: [
-          {
-            text: "You are Gokul AI, a friendly assistant. Never mention Google or OpenAI in your replies."
-          }
-        ],
-      };
+  function handlegpt (){
+    setchatgpt(!chatgpt)
+    // setSnakegame(false)
+    // setGame2(false)
+    // setGame(false)
+  }
 
-  const callGemini = async (chatHistory) => {
-    try {
-      const res = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "X-goog-api-key": "AIzaSyCW7PKHC8AFaGF6uKp3ciP87m6FRgdRFXQ"},
-          body: JSON.stringify({
-            contents: [ systemPrompt, ...chatHistory.map((msg) => ({
-              role: msg.sender === "user" ? "user" : "model",
-              parts: [{ text: msg.text }],
-            })),
-          ]
-          }),
-        }
-      );
+  function handlereload(){
+    window.location.reload()
+  }
 
-      const data = await res.json();
-      return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
-    } catch (err) {
-      console.error("Error:", err);
-      return "Error calling Gemini API";
-    }
-  };
+  function handlegame(){
+    setSnakegame(true)
+    setchatgpt(false)
+    setGame2(false)
+    sethome(false)
+    setai(false)
+    setweather(false)
+  }
 
-  const handleSend = async () => {
-    if (!input.trim()) return;
+  function handlegames (){
+    setGame(!game)
+  }
 
-    const newMessages = [...messages, { sender: "user", text: input }];
-    setMessages(newMessages);
+  function handlegame2(){
+    setGame2(true)
+    setSnakegame(false)
+    setchatgpt(false)
+    sethome(false)
+    setai(false)
+    setweather(false)
+  }
 
-    const botReply = await callGemini(newMessages);
-    setMessages([...newMessages, { sender: "bot", text: botReply }]);
-    setInput("");
-  };
+  function handlehome(){
+    setchatgpt(false)
+    setSnakegame(false)
+    setGame2(false)
+    setai(false)
+    sethome(true)
+    setweather(false)
+  }
+
+  function handlecopilot (){
+    setco_pilot(!co_pilot)
+    setchatgpt(false)
+  }
+
+  function handleaibot (){
+    setai(true)
+    setchatgpt(false)
+    sethome(false)
+    setSnakegame(false)
+    setGame2(false)
+    setweather(false)
+  }
+
+  function handle_weather(){
+    setweather(true)
+    setai(false)
+    setchatgpt(false)
+    sethome(false)
+    setSnakegame(false)
+    setGame2(false)
+  }
+
+  useEffect(() => {
+    window.confirm("THIS SITE WORKS EFFICIENTLY ONLY FOR PC")
+  },[])
 
 
 return (
       <>
-         <div className="chat-container">
-      <div className="chat-box">
-        <header className="app-header">
-          <h1> 🤖 Gokul -- AI 🤖 </h1>
-        </header>
-        <div className="messages">
-          {messages.length < 1 && <h2 className='text'>AI Build By Gokul</h2>}
-          {messages.map((msg, i) => (
-            <div
-              key={i}
-              className={`message ${msg.sender === "user" ? "user" : "bot"}`}
-            >
-              {msg.text}
-            </div>
-          ))}
-        </div>
+      <header>
+        <h1 onClick={handlereload}>All in one</h1>
+          <div onClick={handlehome}>home</div>
+          <div onClick={handlegpt}>chatgpt</div>
+          <div onClick={handle_weather}>weather</div>
+          <div onClick={handlegames}>games</div>
+            {game && <div className="slider" onClick={handlegame}>Flappy Game</div>}
+            {game && <div className="slider" onClick={handlegame2}>snakegame</div>}
+      </header>
+      <nav >
+        {chatgpt && <div onClick={handlecopilot}>copilot</div>}
+        {chatgpt && <div onClick={handleaibot}>chatgpt</div>}
+      </nav>
+      {home && <Home handleaibot={handleaibot}
+                     handlecopilot={handlecopilot}
+                     handlegame={handlegame}
+                     handlegame2={handlegame2}
+                     handle_weather={handle_weather}
+               />}
+      <main>
+          {snakegame && <Flappy_Game />}
+          {game2 && <Snake_Game />}
+          {ai && <Ai_bot />}
+          {co_pilot &&<Copilot />}
+          {weather && <Weather />}
+      </main>
+      
+      
 
-        <div className="input-area">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your message..."
-          />
-          <button onClick={handleSend}>Send</button>
-        </div>
-      </div>
-    </div>
       </>
   )
 }
