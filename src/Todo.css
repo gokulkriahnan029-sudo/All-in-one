@@ -1,0 +1,110 @@
+
+.todo{
+    color: white;
+    align-items: center;
+}
+.todo>h1{
+  font-size: 2rem;
+}
+.todo>input{
+    background-color: aliceblue;
+    color: black;
+    border-radius: 6px;
+}
+.todo>form{
+    margin-left: 40px;
+}
+.todo>form>input{
+    background-color: aliceblue;
+    color: black;
+    border-radius: 6px;
+    margin: 5px;
+}
+.todo>form>button{
+    background-color: rgb(176, 102, 194);
+    color: black;
+    margin: 5px;
+    width: 30px;
+    border-radius: 5px;
+    
+}
+.div{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    
+}
+.list{
+    width: 600px;
+    height: 60vh;
+    max-height: 60vh;
+    max-width: 600px;
+    background-color: #1e293b;
+    border-radius: 10px; 
+   overflow-y: auto;
+}
+.list::-webkit-scrollbar {
+width: 10px;
+}
+.list::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 10px;
+}
+.list::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+input[type="checkbox"] {
+  display: none;
+}
+
+.custom-checkbox {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #555;
+  border-radius: 6px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + .custom-checkbox {
+  background-color: #4caf50;
+  border-color: #4caf50;
+  position: relative;
+}
+
+input[type="checkbox"]:checked + .custom-checkbox::after {
+  content: "✔";
+  position: absolute;
+  top: 0;
+  left: 4px;
+  color: white;
+}
+.delete-btn {
+  background-color: #e63946;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-btn:hover {
+  background-color: #d62828;
+}
+.todo-list {
+    max-width: 400px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;       /* vertically center */
+    justify-content: space-between; /* spread content */
+    padding: 10px 14px;
+    background: #565d6b;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.todo-text {
+  font-size: 16px;
+  flex: 1;
+  margin-left: 10px;
+}

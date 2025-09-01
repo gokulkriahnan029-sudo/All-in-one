@@ -1,12 +1,13 @@
 
 import './App.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Flappy_Game from './Flappy_Game'
 import Snake_Game from './Snake_Game'
 import Ai_bot from './Ai_bot'
 import Copilot from './Copilot'
 import Home from './Home'
 import Weather from './Weather'
+import Todo from './Todo'
 
 
 function App() { 
@@ -19,6 +20,7 @@ function App() {
   const [ai, setai] = useState(false)
   const [home, sethome] = useState(true)
   const [weather, setweather] = useState(false)
+  const [todo, setTodo] = useState(false)
 
 
   function handlegpt (){
@@ -36,6 +38,7 @@ function App() {
     sethome(false)
     setai(false)
     setweather(false)
+    setTodo(false)
   }
 
   function handlegames (){
@@ -49,6 +52,7 @@ function App() {
     sethome(false)
     setai(false)
     setweather(false)
+    setTodo(false)
   }
 
   function handlehome(){
@@ -58,6 +62,7 @@ function App() {
     setai(false)
     sethome(true)
     setweather(false)
+    setTodo(false)
   }
 
   function handlecopilot (){
@@ -72,10 +77,21 @@ function App() {
     setSnakegame(false)
     setGame2(false)
     setweather(false)
+    setTodo(false)
   }
 
   function handle_weather(){
     setweather(true)
+    setai(false)
+    setchatgpt(false)
+    sethome(false)
+    setSnakegame(false)
+    setGame2(false)
+    setTodo(false)
+  }
+  function handletodo(){
+    setTodo(true)
+    setweather(false)
     setai(false)
     setchatgpt(false)
     sethome(false)
@@ -106,6 +122,7 @@ return (
                      handlegame={handlegame}
                      handlegame2={handlegame2}
                      handle_weather={handle_weather}
+                     handletodo={handletodo}
                />}
       <main>
           {snakegame && <Flappy_Game />}
@@ -113,6 +130,7 @@ return (
           {ai  && <Ai_bot />}
           {co_pilot &&<Copilot />}
           {weather && <Weather />}
+          {todo && <Todo />}
       </main>
       
       

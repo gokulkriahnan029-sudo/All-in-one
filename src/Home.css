@@ -44,7 +44,9 @@ body {
   color: #7c5cff;
   font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
 }
+
 .about {
   padding: 40px 20px;
   background: #111827;

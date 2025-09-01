@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Home.css"
 import { Pointer } from "lucide-react";
 
-const Home = ({handleaibot,handlecopilot,handlegame,handlegame2,handle_weather}) =>{
+const Home = ({handleaibot,handlecopilot,handlegame,handlegame2,handle_weather,handletodo}) =>{
 
     const [gamelist, setgamelist] = useState(false)
 
@@ -24,7 +24,7 @@ return(
                 <div class="app-card">
                 <h3>🎮 Games</h3>
                 <p>Play fun and interactive games right in your browser. Relax, challenge friends, and sharpen your mind.</p>
-                <a onClick={handlegames}>Play Now</a>
+                <a onClick={handlegames}>Play Now </a>
                 <br />
                 {gamelist && <a onClick={handlegame}>🕊️ Flappy Game</a>}
                 <br />
@@ -47,6 +47,12 @@ return(
                 <h3>🤖 Copilot</h3>
                 <p>A powerful assistant to brainstorm, write code, and boost productivity. Always by your side.</p>
                 <a onClick={handlecopilot}>Launch Copilot</a>
+                </div>
+              
+                <div class="app-card">
+                <h3> 📝 ToDo-List</h3>
+                <p>Manage your daily tasks with ease. Add, edit, and complete tasks in just a few clicks. Stay productive and never miss what matters most.</p>
+                <a onClick={handletodo}> Launch Todo-List</a>
                 </div>
 
             </div>
