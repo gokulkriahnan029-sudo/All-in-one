@@ -8,6 +8,7 @@ const Todo = () => {
     const [items, setItems] = useState([])
     const [name, setname] = useState("")
     const [isconfirm, setisconfirm] = useState(false)
+    const [search, setsearch] = useState("")
 
     function handledel(id){
         const del = items.filter((i) => i.id !== id)
@@ -44,6 +45,8 @@ const Todo = () => {
         window.location.reload()
     }
 
+    const filtereditems = items.filter((item) => item.content.toLowerCase().includes(search.toLowerCase()))
+
 return(
         <>
             <div className='div'>
@@ -61,7 +64,7 @@ return(
                                                   borderRadius : "10px",
                                                   
                                                   }  }>format all data</button>
-                    <input type="text" placeholder=" -- Search --" />
+                    <input type="text" placeholder=" -- Search --" onChange={(e) => setsearch(e.target.value)}/>
                     <br />
                     <br />
                 </div>
@@ -71,7 +74,7 @@ return(
                     {!items.length && <br />}
                     {!items.length && <br />}
                     {!items.length && <span className='todo-text'>List is empty !!</span>}
-                    {items.map((item) => (
+                    {filtereditems.map((item) => (
                         <div className='todo-list' key={item.id}>
                             <input type="checkbox"  checked={item.bool} />
                             <span className="custom-checkbox" onClick={() => handlecheckbox(item.id)} ></span>
