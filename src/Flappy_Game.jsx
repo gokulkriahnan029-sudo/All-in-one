@@ -4,12 +4,13 @@ import { useState, useEffect } from "react";
 const Flappy_Game = () => {
 
 
-   const [birdY, setBirdY] = useState(50); // bird position
+  const [birdY, setBirdY] = useState(50); // bird position
   const [velocity, setVelocity] = useState(0);
   const [obstacles, setObstacles] = useState([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
+  
 
   const gravity = 0.5;
   const jump = -8;

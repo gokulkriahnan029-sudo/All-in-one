@@ -9,6 +9,7 @@ const Todo = () => {
     const [name, setname] = useState("")
     const [isconfirm, setisconfirm] = useState(false)
     const [search, setsearch] = useState("")
+    const [item_alart, setitem_alart] = useState(false)
 
     function handledel(id){
         const del = items.filter((i) => i.id !== id)
@@ -16,9 +17,14 @@ const Todo = () => {
     }
     function handlesubmit(e){
         e.preventDefault()
+        if(dupl) {
+            setitem_alart(true)
+            return;
+        }
         if(!name.trim()) return;
         setItems([...items,{id: Date.now(), content: name, bool: false}])
         setname('')
+        setitem_alart(false)
     }
     function handlecheckbox(id){
         const fil = items.map((item) => item.id == id ? {id: item.id, content: item.content,bool: !item.bool } : item)
@@ -46,7 +52,8 @@ const Todo = () => {
     }
 
     const filtereditems = items.filter((item) => item.content.toLowerCase().includes(search.toLowerCase()))
-
+    const dupl = items.find((i) => i.content == name)
+    console.log(dupl)
 return(
         <>
             <div className='div'>
@@ -57,6 +64,7 @@ return(
                         <input type="text" required placeholder=" Add list here " value={name} onChange={(e) => setname(e.target.value)} />
                         <button type='submit'>+</button>
                     </form>
+                    {item_alart && <p>⚠️ Item already added try with different name ⚠️</p>}
                     <button type="submit" onClick={() => setisconfirm(true)} style={{backgroundColor : "red",
                                                   padding : "5px",
                                                   margin : "6px",
@@ -74,6 +82,7 @@ return(
                     {!items.length && <br />}
                     {!items.length && <br />}
                     {!items.length && <span className='todo-text'>List is empty !!</span>}
+                    {!filtereditems.length && search.length ? <span> 🔍❌ No Search Result founded</span> : null}
                     {filtereditems.map((item) => (
                         <div className='todo-list' key={item.id}>
                             <input type="checkbox"  checked={item.bool} />

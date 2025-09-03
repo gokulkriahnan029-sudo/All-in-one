@@ -382,3 +382,15 @@ nav>div:hover{
   background: rgba(0, 0, 0, 0.4);
   z-index: 999;
 }
+
+.confirmcomp{
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  width: 400px;
+  height : 130px;
+  position: fixed;
+  text-align: center;
+  top: 50% ;
+  left: 35%;
+  border-radius: 10px;
+}

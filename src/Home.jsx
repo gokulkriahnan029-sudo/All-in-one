@@ -12,16 +12,16 @@ const Home = ({handleaibot,handlecopilot,handlegame,handlegame2,handle_weather,h
 
 return(
     <>
-    <header class="hero">
+    <header className="hero">
             <h1>🌐 All-in-One Hub</h1>
             <p>Your daily companion — play games, check the weather, chat with AI, and boost productivity all in one place.</p>
-            <a href="#apps" class="cta">Explore Now</a>
+            <a href="#apps" className="cta">Explore Now</a>
         </header>
-        <section id="apps" class="apps">
+        <section id="apps" className="apps">
                 <h2>What’s Inside 🚀</h2>
-            <div class="app-grid">
+            <div className="app-grid">
 
-                <div class="app-card">
+                <div className="app-card">
                 <h3>🎮 Games</h3>
                 <p>Play fun and interactive games right in your browser. Relax, challenge friends, and sharpen your mind.</p>
                 <a onClick={handlegames}>Play Now </a>
@@ -31,25 +31,25 @@ return(
                 {gamelist && <a onClick={handlegame2}>🐍 Snake Game</a>}
                 </div>
 
-                <div class="app-card">
+                <div className="app-card">
                 <h3>☀️ Weather</h3>
                 <p>Stay updated with real-time weather forecasts tailored to your location. Plan your day smarter.</p>
                 <a onClick={handle_weather}>Check Weather</a>
                 </div>
 
-                <div class="app-card">
+                <div className="app-card">
                 <h3>💬 ChatGPT</h3>
                 <p>Ask anything, learn faster, and get instant answers with AI. Your personal knowledge buddy.</p>
                 <a onClick={handleaibot}>Start Chat</a>
                 </div>
 
-                <div class="app-card">
+                <div className="app-card">
                 <h3>🤖 Copilot</h3>
                 <p>A powerful assistant to brainstorm, write code, and boost productivity. Always by your side.</p>
                 <a onClick={handlecopilot}>Launch Copilot</a>
                 </div>
               
-                <div class="app-card">
+                <div className="app-card">
                 <h3> 📝 ToDo-List</h3>
                 <p>Manage your daily tasks with ease. Add, edit, and complete tasks in just a few clicks. Stay productive and never miss what matters most.</p>
                 <a onClick={handletodo}> Launch Todo-List</a>
@@ -57,7 +57,7 @@ return(
 
             </div>
         </section>
-        <section class="about">
+        <section className="about">
             <h2>Why All-in-One?</h2>
             <p>
                 Instead of juggling multiple tabs and apps,

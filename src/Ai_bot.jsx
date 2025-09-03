@@ -2,12 +2,14 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useEffect, useState } from 'react'
+import { FaTrashCan } from "react-icons/fa6";
 
 
 const Ai_bot = () => {
 
     const [messages, setMessages] = useState([])
     const [input, setInput] = useState("")
+    const [confirm, setconfirm] = useState(false)
 
     const systemPrompt = {
         role: "user",
@@ -59,6 +61,11 @@ const Ai_bot = () => {
     useEffect(() => {
         localStorage.setItem("task",JSON.stringify(messages))
     },[handleSend])
+    
+    function handleformat(){
+        localStorage.clear();
+        window.location.reload()
+    }
 
 return (
     <div className="chat-container">
@@ -70,9 +77,20 @@ return (
               <div key={index} className={`message ${item.sender === "user" ? "user" : "bot"}`} >{item.text}</div>
             ))}
             </div>
-            
+            {confirm && <div className="confirmcomp">
+                <h2>Are you sure?</h2>
+                <p>By Clicking Confirm option to delete all chat messages</p>
+                <br />
+                <button onClick={handleformat} style={{backgroundColor: 'red',borderRadius: '5px', marginRight: '180px',width : '80px'}}>confirm</button> 
+                <button onClick={() => setconfirm(false)} style={{backgroundColor : 'white',borderRadius: '5px',width : '80px',color: "#7c5cff"}}>cancel</button>
+            </div>}
             <form onSubmit={(e) => {e.preventDefault()}}>
                 <div className="input-area">
+                    <FaTrashCan style={{color : "black",
+                                     width : '40px',
+                                     height : '40px'}}
+                             onClick={() => setconfirm(true)}
+                    />
                     <Input 
                         placeholder="Ask Anything....."
                         value={input}
